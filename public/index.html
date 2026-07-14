@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aegis Auth System</title>
+  <!-- Google Fonts & Material Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Background decorative elements -->
+  <div class="bg-glow bg-glow-1"></div>
+  <div class="bg-glow bg-glow-2"></div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast hidden">
+    <span class="material-icons-round toast-icon">info</span>
+    <span id="toast-message" class="toast-message">Notification message</span>
+  </div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="material-icons-round brand-icon">security</span>
+        <h1>Aegis<span>Auth</span></h1>
+      </div>
+      <div class="theme-toggle-container">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle dark mode">
+          <span class="material-icons-round">dark_mode</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Login Section -->
+      <section id="login-section" class="auth-card fade-in">
+        <div class="card-header">
+          <h2>Initialize Session</h2>
+          <p>Welcome back, Main Character. Ready to ship?</p>
+        </div>
+        
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="login-email">Email Address</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">mail_outline</span>
+              <input type="email" id="login-email" placeholder="you@example.com" required>
+            </div>
+            <span class="error-msg" id="login-email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">lock_open</span>
+              <input type="password" id="login-password" placeholder="••••••••" required>
+              <button type="button" class="btn-icon toggle-password" aria-label="Show password">
+                <span class="material-icons-round">visibility</span>
+              </button>
+            </div>
+            <span class="error-msg" id="login-password-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <span>Authenticate</span>
+            <span class="material-icons-round">vpn_key</span>
+          </button>
+        </form>
+
+        <div class="card-footer">
+          <p>New here? <a href="#" id="go-to-register">Join the node</a></p>
+        </div>
+      </section>
+
+      <!-- Register Section -->
+      <section id="register-section" class="auth-card fade-in hidden">
+        <div class="card-header">
+          <h2>Create Identity</h2>
+          <p>Join the high-uptime squad. No 404s allowed.</p>
+        </div>
+        
+        <form id="register-form" novalidate>
+          <div class="form-group">
+            <label for="register-username">Username</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">person_outline</span>
+              <input type="text" id="register-username" placeholder="johndoe" required>
+            </div>
+            <span class="error-msg" id="register-username-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="register-email">Email Address</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">mail_outline</span>
+              <input type="email" id="register-email" placeholder="you@example.com" required>
+            </div>
+            <span class="error-msg" id="register-email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">lock_open</span>
+              <input type="password" id="register-password" placeholder="Min. 6 characters" required>
+              <button type="button" class="btn-icon toggle-password" aria-label="Show password">
+                <span class="material-icons-round">visibility</span>
+              </button>
+            </div>
+            <span class="error-msg" id="register-password-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="register-confirm-password">Confirm Password</label>
+            <div class="input-wrapper">
+              <span class="material-icons-round field-icon">lock</span>
+              <input type="password" id="register-confirm-password" placeholder="Confirm password" required>
+            </div>
+            <span class="error-msg" id="register-confirm-password-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            <span>Deploy Account</span>
+            <span class="material-icons-round">bolt</span>
+          </button>
+        </form>
+
+        <div class="card-footer">
+          <p>Already synced? <a href="#" id="go-to-login">Resume session</a></p>
+        </div>
+      </section>
+
+      <!-- Dashboard Section -->
+      <section id="dashboard-section" class="dashboard-card fade-in hidden">
+        <div class="dashboard-header">
+          <div class="user-welcome">
+            <div class="avatar">
+              <span id="user-avatar-initial">U</span>
+            </div>
+            <div>
+              <h2>Welcome, <span id="dashboard-username">User</span>!</h2>
+              <p>Aegis Node • System status: Cooking.</p>
+            </div>
+          </div>
+          <button id="logout-btn" class="btn btn-secondary">
+            <span class="material-icons-round">power_settings_new</span>
+            <span>Kill Session</span>
+          </button>
+        </div>
+
+        <div class="dashboard-grid">
+          <!-- Profile Card -->
+          <div class="info-card">
+            <h3><span class="material-icons-round text-primary">badge</span> Profile Details</h3>
+            <div class="detail-row">
+              <span class="label">User ID</span>
+              <span class="value code" id="user-id">Loading...</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Email</span>
+              <span class="value" id="user-email">Loading...</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Username</span>
+              <span class="value" id="user-display-username">Loading...</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">User Role</span>
+              <span class="value code" id="user-role">Loading...</span>
+            </div>
+            <div class="detail-row">
+              <span class="label">Joined On</span>
+              <span class="value" id="user-joined">Loading...</span>
+            </div>
+          </div>
+
+          <!-- Quick Actions / Token Status -->
+          <div class="info-card">
+            <h3><span class="material-icons-round text-success">verified_user</span> Security Status</h3>
+            <div class="status-indicator authenticated">
+              <span class="dot animate-pulse"></span>
+              <span class="status-text">Session Authenticated via JWT</span>
+            </div>
+            <p class="status-description">Your session token is active and valid. Client-side authentication states are synchronized with secure backend API middleware.</p>
+            
+            <button id="verify-token-btn" class="btn btn-outline btn-block">
+              <span class="material-icons-round">wifi_tethering</span>
+              <span>Ping Server</span>
+            </button>
+          </div>
+        </div>
+
+        <footer class="dashboard-footer">
+          <p>© 2026 Aegis Secure Systems. All Rights Reserved.</p>
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
